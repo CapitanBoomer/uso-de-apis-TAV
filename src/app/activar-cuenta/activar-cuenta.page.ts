@@ -13,6 +13,7 @@ export class ActivarCuentaPage implements OnInit {
   public email: string = '';
   public gen: string = '';
   public foto: string = '';
+  public token: string = '';
   constructor(public rutaactiva: ActivatedRoute, public serv: LoginServService) { }
 
   ngOnInit() {
@@ -24,7 +25,8 @@ export class ActivarCuentaPage implements OnInit {
         this.apellido = resp['apellido'] || 'sin apellido',
         this.email = resp['email'] || 'sin email',
         this.gen = resp['gen'] || 'sin genero',
-        this.foto = resp['foto'] || 'sin foto'
+        this.foto = resp['foto'] || 'sin foto',
+        this.token = resp['token'] || 'sin token'
     })
   }
 }

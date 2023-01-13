@@ -1,0 +1,26 @@
+export interface Productos {
+  id: number,
+  title:string ,
+  description:string ,
+  price: number,
+  discountPercentage: number,
+  rating: number,
+  stock: number,
+  brand:string,
+  category:string,
+  thumbnail: string,
+  images: [string]
+}
+export type productosresponse = {
+  id: number,
+  title:string ,
+  description:string ,
+  price: number,
+  discountPercentage: number,
+  rating: number,
+  stock: number,
+  brand:string,
+  category:string,
+  thumbnail: string,
+  images: [string]
+};

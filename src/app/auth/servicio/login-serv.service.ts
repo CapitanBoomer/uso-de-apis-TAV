@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginServService {
   private url_auth: string = 'https://dummyjson.com/auth/login';
-  private datosuser: authresponse | null | Observable<null> = null;
+  public datosuser: authresponse | null | Observable<null> = null;
   private cargando: boolean = false;
   public confirmacion: boolean = false;
   constructor(private clien: HttpClient, private alerta: AlertController, private ruta: Router) { }
@@ -28,7 +28,7 @@ export class LoginServService {
 
 
   public obtenerToken() {
-    return this.datosuser;
+    return (this.datosuser as authresponse).token;
   }
 
 
@@ -46,7 +46,7 @@ export class LoginServService {
       password
     }, {
       headers: {
-        'Content-Type': 'application/json' //firefox dev o w3s, para encontarr documentacion de headers http
+        'Content-Type': 'application/json', //firefox dev o w3s, para encontarr documentacion de headers http
 
       }
 

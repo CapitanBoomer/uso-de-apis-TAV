@@ -2,27 +2,40 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Auth, authresponse } from '../../modelos/auth';
 import { AlertController } from '@ionic/angular';
-import {catchError} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginServService {
-
   private url_auth: string = 'https://dummyjson.com/auth/login';
-  private datosuser: authresponse | null | Observable<null> = null ;
+  private datosuser: authresponse | null | Observable<null> = null;
   private cargando: boolean = false;
-  constructor(private clien: HttpClient, private alerta:AlertController) { }
+  public confirmacion: boolean = false;
+  constructor(private clien: HttpClient, private alerta: AlertController, private ruta: Router) { }
+
+  public confirmar() {
+    this.confirmacion = true
+  }
+
+  public obtenerconfirmacion() {
+    return this.confirmacion
+  }
+
+
+
 
 
   public obtenerToken() {
-   return this.datosuser;
+    return this.datosuser;
   }
 
 
   public obtenercargando() {
-   return this.cargando;
+    return this.cargando;
   }
+
 
 
   public autenticar({ username, password }: Auth) {
@@ -38,20 +51,20 @@ export class LoginServService {
       }
 
     })
-    .pipe(catchError(async(error:HttpErrorResponse)=>{
-      if(error.status=== 400){
-        const alerta = await this.alerta.create({header:'error 404'});
-        await alerta.present();
-      }
-      return null}))
-    .subscribe(async(datos) => {
+      .pipe(catchError(async (error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          const alerta = await this.alerta.create({ header: 'error 400' });
+          await alerta.present();
+        }
+        return null
+      }))
+      .subscribe(async (datos) => {
 
-      this.datosuser = datos;
-      this.cargando = false;
-  if(datos){const alerta = await this.alerta.create({header:'correrto'});
-await alerta.present();}
-//aqui va la redireccion
-    })
+        this.datosuser = datos;
+        this.cargando = false;
+        if (datos) { this.ruta.navigate(['/activar'], { queryParams: { nombre: this.datosuser?.username, prnombre: this.datosuser?.firstName, apellido: this.datosuser?.lastName, email: this.datosuser?.email, gen: this.datosuser?.gender, foto: this.datosuser?.image } }) }
+        //aqui va la redireccion
+      })
   }; // manera de solicitar unos atributos en concreto llaamandolos desde la interface (auth.ts)
 
 }

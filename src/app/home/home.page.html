@@ -7,8 +7,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-{{prueba.obtenerToken()|json}}
-  <ion-button (click)="probarlog()" expand="block" fill="clear" shape="round">
-    Click me
-  </ion-button>
+
+  <ion-card>
+    <form [formGroup]="formulario" (ngSubmit)=" probarlog()">
+      <ion-item>
+        <ion-label position="floating">Nombre usuario</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-button type="submit" type="submit" slot="end" color="success">
+          Ingresar<ion-icon name="log-in-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </form>
+  </ion-card>
 </ion-content>

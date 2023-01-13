@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Activar cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-note>
+   Por temas de la compañia Active su cuenta nuevamente para ingresar a sus datos estimado usuario.
+    </ion-note>
+  </ion-list>
+  <ion-item>
+    <ion-label>Activar cuenta</ion-label>
+    <ion-toggle slot="end" [(ngModel)]="serv.confirmacion" (change)="serv.confirmar"></ion-toggle>
+  </ion-item>
+
+<ion-button [routerLink]="['/login']"[queryParams]="{nombre:nombreusuario,prnombre:prnombre,apellido:apellido,email:email,gen: gen ,foto:foto}"  expand="block" fill="clear" shape="round">
+Activar
+</ion-button>
+
+</ion-content>

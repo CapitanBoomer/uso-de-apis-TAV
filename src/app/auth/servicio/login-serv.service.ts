@@ -62,7 +62,7 @@ export class LoginServService {
 
         this.datosuser = datos;
         this.cargando = false;
-        if (datos) { this.ruta.navigate(['/activar'], { queryParams: { nombre: this.datosuser?.username, prnombre: this.datosuser?.firstName, apellido: this.datosuser?.lastName, email: this.datosuser?.email, gen: this.datosuser?.gender, foto: this.datosuser?.image } }) }
+        if (datos) { this.ruta.navigate(['/login'], { queryParams: { nombre: this.datosuser?.username, prnombre: this.datosuser?.firstName, apellido: this.datosuser?.lastName, email: this.datosuser?.email, gen: this.datosuser?.gender, foto: this.datosuser?.image } }) }
         //aqui va la redireccion
       })
   }; // manera de solicitar unos atributos en concreto llaamandolos desde la interface (auth.ts)

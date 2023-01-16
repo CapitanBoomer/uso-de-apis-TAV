@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {ProductoService} from './../../catalogo/servicio/producto.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   public genero: string = '';
   public foto: string = '';
   public token: string = '';
-  constructor(public rutaactiva:ActivatedRoute,private productos: ProductoService, private ruta:Router ) { }
+  constructor(public rutaactiva:ActivatedRoute, private ruta:Router ) { }
 
   ngOnInit() {
   }
@@ -25,12 +25,9 @@ export class LoginPage implements OnInit {
         this.apellido = resp['apellido'] || 'sin apellido',
         this.email = resp['email'] || 'sin email',
         this.genero = resp['gen'] || 'sin genero',
-        this.foto = resp['foto'] || 'sin foto',
-        this.token = resp['token'] || 'sin token'
+        this.foto = resp['foto'] || 'sin foto'
     })
   }
 
-  autenticartoken(){
-    this.productos.autenticartoken();
-  }
+
 }
